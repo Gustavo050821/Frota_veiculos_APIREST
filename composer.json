@@ -1,0 +1,26 @@
+{
+    "name": "gustavo/frota_veiculos",
+    "description": "n",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Gustavo\\Frota_Veiculos\\" : "frota_veiculos/",
+            "Model\\" : "Model/",
+            "Controller\\" : "Controller/"
+        },
+        "files": [
+            "Config/configuration.php"
+        ]
+    },
+    "authors" : [
+        {
+            "name": "Gustavo050821",
+            "email": "luisgustavofe2105@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=8.0",
+        "ext-mbstring": "*"
+    }
+}
