@@ -30,6 +30,25 @@ class Veiculo
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getVeiculoById($id)
+    {
+        $sql = "SELECT * FROM veiculos WHERE ID = :ID";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(":ID", $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function getVeiculoByModelo($modelo)
+    {
+        $sql = "SELECT * FROM veiculos WHERE lower(modelo) LIKE lower(:modelo)";
+        $stmt = $this->conn->prepare($sql);
+        $like = '%' . $modelo . '%';
+        $stmt->bindParam(":modelo", $like, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     // Método para criar um novo veículo
     public function createVeiculos()
     {

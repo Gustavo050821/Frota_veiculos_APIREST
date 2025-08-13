@@ -11,7 +11,17 @@ $method = $_SERVER['REQUEST_METHOD'];
 // VERIFICAR O MÉTODO E EXECUTAR UMA AÇÃO
 switch ($method) {
     case 'GET':
-        $VeiculoController->getVeiculos();
+        $ID = $_GET['ID'] ?? null;
+        $modelo = $_GET['modelo'] ?? null;
+
+        if ($ID) {
+            $VeiculoController->getVeiculoById($ID);
+        } 
+        else if ($modelo) {
+            $VeiculoController->getVeiculoByModelo($modelo);
+        } else {
+            $VeiculoController->getVeiculos();
+        }
         break;
     case 'POST':
         $VeiculoController->createVeiculos();

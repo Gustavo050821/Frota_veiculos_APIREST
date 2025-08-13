@@ -12,6 +12,7 @@ class VeiculoController
         $veiculo = new Veiculo();
         $veiculos = $veiculo->getVeiculos();
 
+
         if ($veiculos) {
             // Envia a resposta JSON
             header('Content-Type: application/json');
@@ -20,6 +21,47 @@ class VeiculoController
             echo json_encode(["message" => "No veiculos found"]);
         }
     }
+
+    public function getVeiculoById()
+    {
+       $ID = $_GET['ID'] ?? null;
+
+        if ($ID) {
+            $veiculo = new Veiculo();
+            $veiculo->ID = $ID;
+
+            $veiculoData = $veiculo->getVeiculoById($ID);
+            if ($veiculoData) {
+                echo json_encode($veiculoData);
+            } else {
+                echo json_encode(["message" => "Veiculo not found"]);
+            }
+        } else {
+            echo json_encode(["message" => "Invalid ID"]);
+        }
+    }
+
+    public function getVeiculoByModelo()
+    {
+        $modelo = $_GET['modelo'] ?? null;
+
+        if ($modelo) {
+            $veiculo = new Veiculo();
+            $veiculo->modelo = $modelo;
+
+            $veiculoData = $veiculo->getVeiculoByModelo($modelo);
+            if ($veiculoData) {
+                echo json_encode($veiculoData);
+            } else {
+                echo json_encode(["message" => "Veiculo not found"]);
+            }
+        } else {
+            echo json_encode(["message" => "Invalid modelo"]);
+        }
+    }
+
+    
+           
 
     // Função para criar um veículo
     public function createVeiculos()
